@@ -1,5 +1,5 @@
 # Mailpy
-Short description and motivation.
+Action Mailer Adapter for Send Email Through HTTP APIs.
 
 ## Usage
 How to use my plugin.
@@ -9,6 +9,16 @@ Add this line to your application's Gemfile:
 
 ```ruby
 gem 'mailpy'
+```
+
+Add configuration to your application environments. development.rb, staging.rb, or production.rb
+
+```ruby
+config.action_mailer.delivery_method = :mailpy
+config.action_mailer.mailpy_settings = {
+	endpoint: ENV['MAILER_API_ENDPOINT'],
+	token: ENV['MAILER_API_KEY_OR_AUTH_TOKEN']
+}
 ```
 
 And then execute:
