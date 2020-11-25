@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.email       = ["nasrul.remaza@gmail.com"]
   spec.homepage    = "https://github.com/nasrulgunawan/mailpy"
   spec.summary     = "Summary of Mailpy."
-  spec.description = "Description of Mailpy."
+  spec.description = "Action Mailer Adapter for Send Email Through HTTP APIs."
   spec.license     = "MIT"
 
   spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
