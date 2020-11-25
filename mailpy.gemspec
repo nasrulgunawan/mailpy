@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.version     = Mailpy::VERSION
   spec.authors     = ["Nasrul Gunawan"]
   spec.email       = ["nasrul.remaza@gmail.com"]
-  spec.homepage    = "https://github.com/nagumedia/mailpy"
+  spec.homepage    = "https://github.com/nasrulgunawan/mailpy"
   spec.summary     = "Summary of Mailpy."
   spec.description = "Description of Mailpy."
   spec.license     = "MIT"
