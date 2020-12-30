@@ -1,11 +1,9 @@
 require 'httparty'
 
 class MailerApi
-  attr_reader :mail, :options
-
   def initialize(mail, options = {})
     @mail = mail
-    @options = @options
+    @options = options
   end
 
   def send
@@ -17,6 +15,8 @@ class MailerApi
   end
 
   private
+    attr_reader :mail, :options
+    
     def form_data
       {
         to: mail.to.try(:join, ', '),
