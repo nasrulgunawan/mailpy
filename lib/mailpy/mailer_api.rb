@@ -1,34 +1,33 @@
 require 'httparty'
 
 class MailerApi
-  attr_reader :options, :message
+  attr_reader :mail, :options
 
-  def initialize(options, message)
-    @options = options
-    @message = message
+  def initialize(mail, options = {})
+    @mail = mail
   end
 
   def send
-    send_email
+    result = HTTParty.post(
+      options[:endpoint],
+      body: form_data,
+      headers: headers
+    )
   end
 
   private
-  def send_email
-    result = HTTParty.post(
-      options[:endpoint],
-      body: {
-        sender_email: options[:sender], 
-        recipient_email: options[:to], 
-        cc_email: options[:cc],
-		    bcc_email: options[:bcc], 
-        subject_email: options[:subject], 
-        message_email: message
-      }.to_json,
-      
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': options[:token].to_s
-      }
-    )    
-  end
+    def form_data
+      {
+        to: mail.to.try(:join, ', '),
+        cc: mail.cc.try(:join, ', '),
+        bcc: mail.bcc.try(:join, ', '),
+        from: mail.from.try(:join, ', '),
+        subject: mail.subject,
+        body: mail.body.to_s
+      }.to_json
+    end
+
+    def headers
+      { 'Content-Type': 'application/json' }.merge!(options[:headers])
+    end
 end
