@@ -16,7 +16,7 @@ class MailerApi
 
   private
     attr_reader :mail, :options
-    
+
     def form_data
       {
         to: mail.to.try(:join, ', '),
