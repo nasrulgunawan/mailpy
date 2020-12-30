@@ -17,7 +17,9 @@ Add configuration to your application environments. development.rb, staging.rb, 
 config.action_mailer.delivery_method = :mailpy
 config.action_mailer.mailpy_settings = {
 	endpoint: ENV['MAILER_API_ENDPOINT'],
-	token: ENV['MAILER_API_KEY_OR_AUTH_TOKEN']
+	headers: {
+	  Authorization: ENV['MAILER_API_KEY_OR_AUTH_TOKEN']
+	}
 }
 ```
 
