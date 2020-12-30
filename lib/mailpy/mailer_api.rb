@@ -5,6 +5,7 @@ class MailerApi
 
   def initialize(mail, options = {})
     @mail = mail
+    @options = @options
   end
 
   def send
