@@ -19,16 +19,25 @@ class MailerApi
 
     def form_data
       {
-        to: mail.to.try(:join, ', '),
-        cc: mail.cc.try(:join, ', '),
-        bcc: mail.bcc.try(:join, ', '),
-        from: mail.from.try(:join, ', '),
-        subject: mail.subject,
-        body: mail.body.to_s
-      }.to_json
+        ms_mailer: {
+          to: mail.to.try(:join, ', '),
+          cc: mail.cc.try(:join, ', '),
+          bcc: mail.bcc.try(:join, ', '),
+          from: mail.from.try(:join, ', '),
+          subject: mail.subject,
+          body: mail.body.parts[0].to_s,
+          attachment: attachment_data
+        }
+      }
+    end
+
+    def attachment_data
+      attachments = {}
+      mail.attachments.each { |attachment| attachments[attachment.filename] = attachment.body }
+      attachments
     end
 
     def headers
-      { 'Content-Type': 'application/json' }.merge!(options[:headers])
+      options[:headers]
     end
 end
