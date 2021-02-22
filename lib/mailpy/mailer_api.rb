@@ -25,7 +25,7 @@ class MailerApi
           bcc: mail.bcc.try(:join, ', '),
           from: mail.from.try(:join, ', '),
           subject: mail.subject,
-          body: mail.body.parts[0].to_s,
+          body: mail.body.parts[0].body.to_s,
           attachment: attachment_data
         }
       }
