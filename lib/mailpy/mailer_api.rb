@@ -19,15 +19,13 @@ class MailerApi
 
     def form_data
       {
-        ms_mailer: {
-          to: mail.to.try(:join, ', '),
-          cc: mail.cc.try(:join, ', '),
-          bcc: mail.bcc.try(:join, ', '),
-          from: mail.from.try(:join, ', '),
-          subject: mail.subject,
-          body: body_data,
-          attachment: attachment_data
-        }
+        to: mail.to.try(:join, ', '),
+        cc: mail.cc.try(:join, ', '),
+        bcc: mail.bcc.try(:join, ', '),
+        from: mail.from.try(:join, ', '),
+        subject: mail.subject,
+        body: body_data,
+        attachment: attachment_data
       }
     end
 
