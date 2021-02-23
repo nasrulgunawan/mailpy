@@ -24,11 +24,22 @@ class MailerApi
         bcc: mail.bcc.try(:join, ', '),
         from: mail.from.try(:join, ', '),
         subject: mail.subject,
-        body: mail.body.to_s
-      }.to_json
+        body: body_data,
+        attachment: attachment_data
+      }
+    end
+
+    def body_data
+      mail.body.parts.present? ? mail.body.parts[0].body.to_s : mail.body.to_s
+    end
+
+    def attachment_data
+      attachments = {}
+      mail.attachments.each { |attachment| attachments[attachment.filename] = attachment.body }
+      attachments
     end
 
     def headers
-      { 'Content-Type': 'application/json' }.merge!(options[:headers])
+      options[:headers]
     end
 end
