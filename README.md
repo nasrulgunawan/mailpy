@@ -1,5 +1,5 @@
 # Mailpy
-Action Mailer Adapter for Send Email Through HTTP APIs.
+Action Mailer Adapter for Sending Email Through HTTP APIs. Mailpy will automatically switch to SMTP method in case your mailer server encounter any problem.
 
 ## Usage
 How to use my plugin.
@@ -15,11 +15,23 @@ Add configuration to your application environments. development.rb, staging.rb, 
 
 ```ruby
 config.action_mailer.delivery_method = :mailpy
+config.action_mailer.perform_deliveries = true
+config.action_mailer.raise_delivery_errors = true
 config.action_mailer.mailpy_settings = {
 	endpoint: ENV['MAILER_API_ENDPOINT'],
 	headers: {
 	  Authorization: ENV['MAILER_API_KEY_OR_AUTH_TOKEN']
 	}
+}
+config.action_mailer.smtp_settings = {
+	address: ENV['SMTP_ADDRESS'],
+	port: ENV['SMTP_PORT'],
+	domain: ENV['SMTP_DOMAIN'],
+	authentication: ENV['SMTP_AUTHENTICATION_METHOD'],
+	user_name: ENV['SMTP_USERNAME'],
+	password: ENV['SMTP_PASSWORD'],
+	enable_starttls_auto: true,
+	openssl_verify_mode: 'none'
 }
 ```
 
