@@ -17,9 +17,16 @@ module Mailpy
 
     private
     def perform_send_request(mail, settings)
-      result = MailerApi.new(mail, settings).send
-      raise(MailpyDeliveryError, JSON.parse(result.body)['message']) unless result.code === 200
-      result
+      begin
+        result = MailerApi.new(mail, settings).send
+        raise(MailpyDeliveryError, JSON.parse(result.body)['message']) unless result.code === 200
+        result
+      rescue Errno::ECONNREFUSED
+        smtp_settings = Rails.application.config.action_mailer.smtp_settings
+        raise(MailpyDeliveryError, "SMTP miss configured. Please add SMTP configuration in your environment config") if smtp_settings.blank?
+        result = SMTPApi.new(mail, smtp_settings).send
+        result
+      end
     end
   end
 end
