@@ -1,5 +1,5 @@
 # Mailpy
-Action Mailer Adapter for sending email through HTTP APIs with automatic switching method. Mailpy will automatically switch the mailer method to SMTP in case your mailer server encounter any problem.
+Action Mailer Adapter for Sending Email Through HTTP APIs. Mailpy will automatically switch to SMTP method in case your mailer server encounter any problem.
 
 ## Usage
 How to use my plugin.
@@ -25,13 +25,13 @@ config.action_mailer.mailpy_settings = {
 }
 config.action_mailer.smtp_settings = {
 	address: ENV['SMTP_ADDRESS'],
-    port: ENV['SMTP_PORT'],
-    domain: ENV['SMTP_DOMAIN'],
-    authentication: ENV['SMTP_AUTHENTICATION_METHOD'],
-    user_name: ENV['SMTP_USERNAME'],
-    password: ENV['SMTP_PASSWORD'],
-    enable_starttls_auto: true,
-    openssl_verify_mode: 'none'
+	port: ENV['SMTP_PORT'],
+	domain: ENV['SMTP_DOMAIN'],
+	authentication: ENV['SMTP_AUTHENTICATION_METHOD'],
+	user_name: ENV['SMTP_USERNAME'],
+	password: ENV['SMTP_PASSWORD'],
+	enable_starttls_auto: true,
+	openssl_verify_mode: 'none'
 }
 ```
 
