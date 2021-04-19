@@ -1,5 +1,6 @@
 require "mailpy/railtie"
 require "mailpy/mailer_api"
+require "mailpy/smtp_api"
 
 module Mailpy
   class DeliveryMethod
