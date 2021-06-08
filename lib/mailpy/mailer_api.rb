@@ -23,6 +23,7 @@ class MailerApi
         cc: mail.cc.try(:join, ', '),
         bcc: mail.bcc.try(:join, ', '),
         from: mail.from.try(:join, ', '),
+        options: eval(mail[:options].to_s),
         subject: mail.subject,
         body: body_data,
         attachment: attachment_data
